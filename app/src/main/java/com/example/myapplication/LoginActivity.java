@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,29 +12,34 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText et1,et2;
     Button bt1;
     TextView tv1;
+    private FirebaseAuth mAuth;
 
     String dumy_user= "xcom@gamil.com";
     String dumy_password= "1221";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         et1=findViewById(R.id.username);
         et2=findViewById(R.id.password);
         bt1=findViewById(R.id.login_bt);
         tv1=findViewById(R.id.Sign);
+      mAuth = FirebaseAuth.getInstance();
         tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(MainActivity.this, SignupActivity.class);
+                Intent i=new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(i);
             }
         });
@@ -58,10 +64,20 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent i=new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(i);
+            mAuth.signInWithEmailAndPassword(username,password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent i=new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(i);
 
-                Toast.makeText(MainActivity.this,"All Oky", Toast.LENGTH_SHORT).show();
+                            }else
+                            {
+                                Toast.makeText(LoginActivity.this, "Email and Password is Invalid", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
             }
 

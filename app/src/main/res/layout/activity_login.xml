@@ -7,7 +7,7 @@
     android:background="@drawable/diego"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
    <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
@@ -66,6 +66,8 @@
              android:text="Login"
              android:textSize="20dp"
              tools:ignore="HardcodedText"></Button>
+
+
 
          <TextView
              android:id="@+id/Sign"

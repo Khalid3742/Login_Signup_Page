@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "448306360302",
+    "project_id": "loginnproject-abeb6",
+    "storage_bucket": "loginnproject-abeb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448306360302:android:6e90fa05bda2d84c40a8ff",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAddXl_hmjSFzCLNz6qUwqOQP9zTTL20-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

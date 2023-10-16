@@ -4,13 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.regex.Pattern;
 
 public class SignupActivity extends AppCompatActivity {
      EditText et1,et2,et3;
@@ -28,32 +27,36 @@ public class SignupActivity extends AppCompatActivity {
         tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(SignupActivity.this, MainActivity.class);
+                Intent i=new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username= et1.getText().toString().trim();
-                String email= et2.getText().toString().trim();
-                String password= et3.getText().toString().trim();
-                if (username.isEmpty()){
+                String username = et1.getText().toString().trim();
+                String email = et2.getText().toString().trim();
+                String password = et3.getText().toString().trim();
+                if (username.isEmpty()) {
                     et1.setError("Reqiured");
                     return;
                 }
-                if (email.isEmpty()){
+                if (email.isEmpty()) {
                     et2.setError("Reqiured");
                     return;
                 }
-                if (password.isEmpty()){
-                    et3.setError("Reqiured");
+                if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
+                    et1.setError("Invalid Email Adress");
                     return;
                 }
+                    if (password.isEmpty()) {
+                        et3.setError("Reqiured");
+                        return;
+                    }
 
-                Toast.makeText(SignupActivity.this,"All Oky", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "All Oky", Toast.LENGTH_SHORT).show();
 
-            }
+            }///
         });
     }
 }
